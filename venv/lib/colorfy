@@ -1,0 +1,60 @@
+import xlwt
+from xlrd import open_workbook
+from xlutils.copy import copy
+book = xlwt.Workbook(style_compression=2)
+sheet1 = book.add_sheet('sheet 1')
+f = open("result.txt")
+line = f.readline()
+count = 0
+style = [0]*999
+i = 0
+row_hi = sheet1.row(0).height
+while line:
+    key = 0
+    a = ''
+    c = ''
+    r = ''
+    g = ''
+    b = ''
+
+    while line[key] != ' ':
+
+        a = a + line[key]
+        key += 1
+    key += 1
+    while line[key] != ' ':
+        c = c + line[key]
+        key += 1
+    key += 1
+    while line[key] != ' ':
+        r = r + line[key]
+        key += 1
+    key += 1
+    while line[key] != ' ':
+        g = g + line[key]
+        key += 1
+    key += 1
+    while line[key] != '\n':
+        b = b + line[key]
+        key += 1
+    key += 1
+    line = f.readline()
+    # add new colour to palette and set RGB colour value
+    if int(r) != 0:
+        x = 1
+
+    else:
+        x = 0
+
+    colorName = 'custom_colour' + str(x)
+
+    xlwt.add_palette_colour(colorName, 8+x)
+    book.set_colour_RGB(8+x, int(r), int(g), int(b))
+    # now you can use the colour in styles
+    style[x] = xlwt.easyxf('pattern: pattern solid, fore_colour ' + colorName + '; font: bold on;')
+    sheet1.write(int(a), int(c), '', style[x])
+    sheet1.col(int(c)).width = row_hi * 8
+    count += 1
+    print(count/(255*255*5))
+book.save('christmas.xls')
+f.close()

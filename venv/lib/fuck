@@ -1,0 +1,31 @@
+import xlwt;
+
+# styleBlueBkg = xlwt.easyxf('font: color-index red, bold on');
+# styleBlueBkg = xlwt.easyxf('font: background-color-index red, bold on');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour red;');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour blue;');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour light_blue;');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour pale_blue;');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour dark_blue;');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour dark_blue_ega;');
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour ice_blue;');
+styleBlueBkg1 = xlwt.easyxf('pattern: pattern solid, fore_colour ocean_blue; font: bold on;');  # 80% like
+styleBlueBkg2 = xlwt.easyxf('pattern: pattern solid, fore_colour red; font: bold on;');  # 80% like
+# styleBlueBkg = xlwt.easyxf('pattern: pattern solid, fore_colour sky_blue;');
+
+
+# blueBkgFontStyle = xlwt.XFStyle()
+# blueBkgFontStyle.Pattern = blueBackgroundPattern;
+# styleBlueBkg = blueBkgFontStyle;
+
+styleBold = xlwt.easyxf('font: bold on');
+
+wb = xlwt.Workbook();
+ws = wb.add_sheet('realPropertyInfo');
+
+ws.write(0, 0, "Sequence", styleBlueBkg1);
+ws.write(0, 1, "MapID", styleBlueBkg2);
+ws.write(0, 2, "Owner1", styleBold);
+ws.write(0, 3, "Owner2", styleBold);
+
+wb.save("text2.xls");
